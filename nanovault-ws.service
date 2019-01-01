@@ -1,0 +1,19 @@
+[Unit]
+Description=Nanovault Websocket Server
+#Requires=After=postgresql.service       # Requires the postgresql service to run first, if you need it
+
+[Service]
+ExecStart=/usr/bin/node /opt/nanovault-ws/index.js
+# Required on some systems
+#WorkingDirectory=/opt/nanovault-ws
+Restart=always
+RestartSec=10
+# Output to syslog
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=nanovault-ws
+User=nanovault-ws
+Group=nanovault-ws
+
+[Install]
+WantedBy=multi-user.target
